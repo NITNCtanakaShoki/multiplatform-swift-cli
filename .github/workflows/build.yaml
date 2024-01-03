@@ -1,0 +1,16 @@
+name: Build
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    container:
+      image: swift:5.9.2-windowsservercore-ltsc2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: swift build
+        run: swift build -c release
+      - name: ls
+        run: ls -a ./.build/release

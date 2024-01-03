@@ -2,13 +2,16 @@ import Fluent
 import Vapor
 
 func routes(_ app: Application) throws {
-  app.get { req async in
-    "It works!"
-  }
+  app.commands.use(HelloCommand(), as: "hello")
+}
 
-  app.get("hello") { req async -> String in
-    "Hello, world!"
+struct HelloCommand: Command {
+  func run(using context: ConsoleKitCommands.CommandContext, signature: Signature) throws {
+    context.console.print("Hello, World!")
   }
-
-  try app.register(collection: TodoController())
+  
+  struct Signature: CommandSignature { }
+  
+  let help = "hello"
+  
 }
