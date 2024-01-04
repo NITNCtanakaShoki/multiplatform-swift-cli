@@ -10,4 +10,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Swift Build and List
-        run: docker run --rm -v "D:/a/multiplatform-swift-cli/multiplatform-swift-cli:/swift-project" -w /swift-project swift:5.9.2-windowsservercore-ltsc2022 bash -c "swift build -c release && ls ./.build/release"
+        run: docker run --rm -v "/d/a/multiplatform-swift-cli/multiplatform-swift-cli:/swift-project" -w /swift-project swift:5.9.2-windowsservercore-ltsc2022 bash -c "swift build -c release && ls ./.build/release"
