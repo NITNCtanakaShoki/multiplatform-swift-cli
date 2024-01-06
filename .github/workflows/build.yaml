@@ -3,13 +3,11 @@ on:
   push:
 
 jobs:
-  build:
+  swift_for_windows:
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - run: pwd
-
-      - name: Swift Build and List
-        run: docker run --rm -w /swift-project swift:5.9.2-windowsservercore-ltsc2022 bash -c "pwd && ls && swift --version"
+      - uses: actions/checkout@v3
+      - uses: MaxDesiatov/swift-windows-action@v1
+        with:
+          shell-action: swift build -c release
+      - run: ls ./.build/release/
